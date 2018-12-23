@@ -30,6 +30,7 @@
   "dependencies": {
     "lodash": "^4.17.11",
     "uglifyjs-webpack-plugin": "^2.1.0",
+    "uuid": "^3.3.2",
     "webpack-manifest-plugin": "^2.0.4"
   }
 }

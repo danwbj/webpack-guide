@@ -2,9 +2,12 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 module.exports = {
-  entry: ["./src/index.js"],
+  entry: {
+    index: "./src/index.js",
+    another: "./src/another-module.js"
+  },
   output: {
-    publicPath: "/",
+    // publicPath: "/",
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist")
   },
@@ -27,7 +30,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(["dist"]),
     new HtmlWebpackPlugin({
-      title: "Output Management"
+      title: "webpack demo"
     })
   ]
 };

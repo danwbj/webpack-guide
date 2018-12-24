@@ -5,12 +5,13 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 const UUID = require("uuid");
 module.exports = {
   entry: {
-    index: "./src/index.js",
-    another: "./src/another-module.js"
+    index: "./src/index.js"
+    // another: "./src/another-module.js"
   },
   output: {
     // publicPath: "/",
     filename: "[name].bundle.js",
+    chunkFilename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist")
   },
   module: {
@@ -30,51 +31,42 @@ module.exports = {
     ]
   },
   optimization: {
-    runtimeChunk: {
-      name: "manifest"
-    },
+    // runtimeChunk: {
+    //   name: "manifest"
+    // }
     // splitChunks: {
+    //   chunks: "all",
+    //   minSize: 30000,
+    //   minChunks: 1,
+    //   maxAsyncRequests: 5,
+    //   maxInitialRequests: 3,
+    //   name(module) {
+    //     let uuid = UUID.v1()
+    //       .toString()
+    //       .split("-");
+    //     return "vendors."  uuid[0];
+    //   },
     //   cacheGroups: {
-    //     commons: {
-    //       test: /[\\/]node_modules[\\/]/,
+    //     vendor: {
+    //       test: /node_modules/,
+    //       chunks: "initial",
     //       name: "vendor",
-    //       chunks: "all"
+    //       priority: 10
+    //     },
+    //     common: {
+    //       chunks: "initial",
+    //       name: "common",
+    //       minSize: 0,
+    //       priority: 2
+    //     },
+    //     styles: {
+    //       name: "styles",
+    //       test: /\.scss|less|css$/,
+    //       chunks: "all",
+    //       enforce: true
     //     }
     //   }
     // }
-    splitChunks: {
-      chunks: "all",
-      minSize: 30000,
-      minChunks: 1,
-      maxAsyncRequests: 5,
-      maxInitialRequests: 3,
-      name(module) {
-        let uuid = UUID.v1()
-          .toString()
-          .split("-");
-        return "vendors." + uuid[0];
-      },
-      cacheGroups: {
-        vendor: {
-          test: /node_modules/,
-          chunks: "initial",
-          name: "vendor",
-          priority: 10
-        },
-        common: {
-          chunks: "initial",
-          name: "common",
-          minSize: 0,
-          priority: 2
-        },
-        styles: {
-          name: "styles",
-          test: /\.scss|less|css$/,
-          chunks: "all",
-          enforce: true
-        }
-      }
-    }
   },
   plugins: [
     new CleanWebpackPlugin(["dist"]),

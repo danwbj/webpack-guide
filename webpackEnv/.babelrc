@@ -1,0 +1,4 @@
+//"presets":["babel-preset-es2015","babel-preset-stage-0","babel-preset-react"]  这里babel-preset是可以省略不写的
+{
+  "presets": ["es2015", "stage-0", "react"]
+}

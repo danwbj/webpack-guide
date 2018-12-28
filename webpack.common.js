@@ -5,7 +5,8 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 const UUID = require("uuid");
 module.exports = {
   entry: {
-    index: "./src/index.js"
+    index: "./src/index.ts"
+    // index: "./src/index.js"
     // another: "./src/another-module.js"
   },
   output: {
@@ -15,12 +16,23 @@ module.exports = {
     chunkFilename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist")
   },
+  resolve: {
+    //自动解析确定的扩展。默认值为：extensions: [".js", ".json"]
+    //能够使用户在引入模块时不带扩展
+    extensions: [".tsx", ".ts", ".js"]
+  },
   module: {
     rules: [
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader"]
+      },
+      {
+        test: /\.tsx?$/,
+        use: "ts-loader",
+        exclude: /node_modules/
       }
+
       //   {
       //     test: /\.(png|svg|jpg|gif)$/,
       //     use: ["file-loader?name=img/[name].[hash:8].[ext]"]
